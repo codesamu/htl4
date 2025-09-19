@@ -1,0 +1,20 @@
+C:\Users\User\Desktop\schule\temp\Workspace01\IntroUebung1.cydsn\IntroUebung1.cyprj|76ebb8a9-6e01-4468-afaa-af22bc5b5be4
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|3996e2d6-9a58-49d3-be00-f9a0b9a0ad30
+C:\Users\User\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|9a1c2cef-e1e1-4674-9147-89d1f7a05942
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|8229a8db-f275-4a81-9ec2-ee891c0279d2
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|1b9fcbd0-e01d-4d30-9bed-2afd81b20621
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b413f432-3fa5-4906-ad7d-79d39f388303
+C:\Users\User\Desktop\schule\temp\Workspace01\SecenSegLookup.cydsn\SecenSegLookup.cyprj|78081420-1b08-4601-8b02-8ff63a91163a
+C:\Users\User\Desktop\schule\temp\Workspace01\Test.cydsn\Test.cyprj|10daaae5-23c6-459b-af4b-04b42be13659
+C:\Users\User\Desktop\schule\temp\Workspace01\SevenSeg1.cydsn\SevenSeg1.cyprj|cefd90bd-79bc-47bc-9b3f-a1357cb55c68
+C:\Users\User\Desktop\schule\temp\Workspace01\Dice.cydsn\Dice.cyprj|9298918a-3d36-49c6-91c0-616d9aafc716
+C:\Users\User\Desktop\schule\temp\Workspace01\MUX1.cydsn\MUX1.cyprj|f32b4d71-52c6-4008-8acd-854b653b03b5
+C:\Users\User\Desktop\schule\temp\Workspace01\Dekodierer.cydsn\Dekodierer.cyprj|91596aea-184d-4dff-ae96-e6e2e09167e0
+C:\Users\User\Desktop\schule\temp\Workspace01\2bit_calc.cydsn\2bit_calc.cyprj|5c12dfab-4873-47b0-b546-e1dbd2a48741
+C:\Users\User\Desktop\schule\temp\Workspace01\RS-Latch.cydsn\RS-Latch.cyprj|cb46480f-3a55-4b25-bd2f-97d0c4b3f1a5
+C:\Users\User\Desktop\schule\temp\Workspace01\RS-Latch2.cydsn\RS-Latch2.cyprj|1edccb42-7638-46ae-9614-96f3c4e68f1f
+C:\Users\User\Desktop\schule\temp\Workspace01\Schieberegister.cydsn\Schieberegister.cyprj|9f9399e9-93ad-4a46-bdbc-2f90e346939c
+C:\Users\User\Desktop\schule\temp\Workspace01\random_LED_sublierung.cydsn\random_LED_sublierung.cyprj|973e214d-e3b2-41d1-8a8c-717062306e17
+C:\Users\User\Desktop\schule\temp\Workspace01\Pseudozufallszahlengenerator.cydsn\Pseudozufallszahlengenerator.cyprj|084639af-da18-4bef-a886-763f2e8088cd
+C:\Users\User\Desktop\schule\temp\Workspace01\quiz-master.cydsn\quiz-master.cyprj|3be7de4c-dd78-4be8-8ca6-179599d16be8
+C:\Users\User\Desktop\schule\temp\Workspace01\GPIO1.cydsn\GPIO1.cyprj|5a335452-8dd0-42de-856d-c4933b0884fc

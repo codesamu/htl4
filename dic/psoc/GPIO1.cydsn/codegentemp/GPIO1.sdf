@@ -1,0 +1,26 @@
+(DELAYFILE
+ (SDFVERSION "IEEE 1497 4.0")
+ (DATE "2025-09-17T14:10:03Z")
+ (DESIGN "GPIO1")
+ (VENDOR "Cypress Semiconductor")
+ (PROGRAM "PSoC Creator")
+ (VERSION " 4.4")
+ (DIVIDER .)
+ (TIMESCALE 1 ns)
+ (CELL
+  (CELLTYPE "GPIO1")
+  (INSTANCE *)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT LED_7\(0\)_PAD LED_7\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT Taster\(0\)_PAD Taster\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_1\(0\)_PAD LED_1\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_6\(0\)_PAD LED_6\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_5\(0\)_PAD LED_5\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_4\(0\)_PAD LED_4\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_3\(0\)_PAD LED_3\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_2\(0\)_PAD LED_2\(0\).pad_in (0.000:0.000:0.000))
+   )
+  )
+ )
+)

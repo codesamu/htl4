@@ -50,12 +50,12 @@ def bfs_maze_solver(maze, start, goal):
             return path
         #print("y = ", y,"x = ", x)
         n_list = get_neighbors(x, y, maze, visited, path)
-        #print("list = ", n_list)
-        print("queue = ", queue)
+        # print("list = ", n_list)
+        # print("queue = ", queue)
         for i in n_list:
             queue.append(i)
         #print("queue after = ", queue)
-        print("visited", visited)
+        # print("visited", visited)
         #print("queue 0 = ", queue[0])
                 #print("point= ",point)
         #print("\n")

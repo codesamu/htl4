@@ -1,7 +1,12 @@
-import Path_Finding_L1 as pf 
-
+import Path_Finding_L1 as pf
+maze = [
+    [0, 1, 0, 0, 0],
+    [0, 1, 0, 1, 0],
+    [0, 0, 0, 1, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0]
+]
 start = (0,0)
+goal = (4,4)
 
-queue, visited = pf.initialize_queue_and_visited(start)
-print(queue)
-print(visited)
+pf.start_solving(maze, start, goal)

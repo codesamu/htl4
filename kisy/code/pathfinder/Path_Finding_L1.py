@@ -8,9 +8,10 @@ def initialize_queue_and_visited(start):
     Returns:
     tuple: Ein Tupel bestehend aus der Warteschlange (queue) und dem Set der besuchten Knoten (visited).
     """
-    queue = [(start[0], start[1]), []]
-    visited = {start}
+    queue=[(start[0], start[1]), []]
     return queue
+
+
 
 def get_neighbors(x, y, maze, visited):
     """
@@ -25,33 +26,32 @@ def get_neighbors(x, y, maze, visited):
     Returns:
     list: Eine Liste der Nachbarknoten, die besucht werden können.
     """
-    nlist=[]
 
-    if x!=4:
+    n_list = []
+    if x != 4:
         if maze[y][x+1] == 0:
-            if (y,x+1) not in visited:
-                nlist.append((y,x+1))
-        
-    if x!=4:
+            if (x+1,y) not in visited:
+                n_list.append((x+1,y))
+    
+    if x != 0:
         if maze[y][x-1] == 0:
-            if (y,x-1) not in visited:
-                nlist.append((y,x-1))
-
-    if y!=0:
+            if (x-1,y) not in visited:
+                n_list.append((x-1,y))
+    
+    if y != 4:
         if maze[y+1][x] == 0:
-            if (y+1,x) not in visited:
-                nlist.append((y+1,x))
-        
-    if y!=0:
+            if (x,y+1) not in visited:
+                n_list.append((x,y+1))
+    
+    if y != 0:
         if maze[y-1][x] == 0:
-            if (y-1,x) not in visited:  
-                nlist.append((y-1,x))
+            if (x,y-1) not in visited:
+                n_list.append((x,y-1))
 
-
-    return nlist
-
-    raise NotImplementedError("get_neighbors() is not implemented yet.")
-
+    visited.append((x,y))
+    return n_list
+            
+                    
 
 def bfs_maze_solver(maze, start, goal):
     """
@@ -65,21 +65,32 @@ def bfs_maze_solver(maze, start, goal):
     Returns:
     list or None: Der kürzeste Pfad als Liste von Koordinaten oder None, wenn kein Pfad gefunden wird.
     """    
-
-    queue, visited = initialize_queue_and_visited(start)
-
-    y = start[0]
-    x = start[1]
+    # Initialisiere die Warteschlange und die besuchten Knoten
+    queue = initialize_queue_and_visited(start)
+    visited = []
+    x = start[0]
+    y = start[1]
+    
+    # Füge hier den Code für BFS hinzu. 
 
     while True:
-        if (x,y)== goal:
-            print("nice")
+        if goal == (x,y):       # Prüfe ob Ziel erreicht
             break
+        print(y,x)
+        n_list = get_neighbors(x, y, maze, visited)
+        print("list = ", n_list)
+        print("queue = ", queue)
+        for i in n_list:
+            queue.append(i)
+        print("queue after = ",queue)
+        print("visited", visited)
+        print("queue 0 = ", queue[0])
+        del queue[0]
+        (x,y) = queue[1]
+        print("\n")
+        
 
-        queue.append(get_neighbors(x,y,maze,visited))
-        visited.append((x,y))
-        (x, y) = queue[0]    
-    
+
     return visited
 
 # Beispiel-Labyrinth
@@ -102,3 +113,5 @@ if path:
     print("Path found:", path)
 else:
     print("No path found from start to goal.")
+
+

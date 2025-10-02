@@ -1,3 +1,6 @@
+import time
+import os
+
 def initialize_queue_and_visited(start):
     queue=[((start[0], start[1]), [])]
     return queue
@@ -47,19 +50,25 @@ def bfs_maze_solver(maze, start, goal):
     for point in queue:
         ((x,y),path) = point
         if goal == (x,y):       
+            path.append(goal)
+            for xx,yy in path:
+                os.system("clear")
+                maze[yy][xx] = "x"
+                for i in range(0, len(maze)):
+                    for j in range(0, len(maze[i])):
+                        print(f"{maze[i][j]}", end=" ")
+                    print()
+                time.sleep(1)
+                
+
+
             return path
-        #print("y = ", y,"x = ", x)
+
         n_list = get_neighbors(x, y, maze, visited, path)
-        # print("list = ", n_list)
-        # print("queue = ", queue)
+
         for i in n_list:
             queue.append(i)
-        #print("queue after = ", queue)
-        # print("visited", visited)
-        #print("queue 0 = ", queue[0])
-                #print("point= ",point)
-        #print("\n")
-        
+       
     return None
 
 # Beispiel-Labyrinth

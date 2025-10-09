@@ -9,9 +9,9 @@ def initial_state():
     """
     Returns starting state of the board.
     """    
-    return [["X", "O", "X"],
-            ["O", "X", EMPTY],
-            [EMPTY, EMPTY, "O"]]
+    return [[EMPTY, EMPTY, EMPTY],
+            [EMPTY, EMPTY, EMPTY],
+            [EMPTY, EMPTY, EMPTY]]
 
 def player(board):
     """
@@ -61,29 +61,33 @@ def winner(board):
     if full == 0:
         return False 
 
-    for row in board:
-        if row[0] == row[1] == row[2] != None:
-            return row[0]
+    else:
+        for row in board:
+            if row[0] == row[1] == row[2] != None:
+                return row[0]
 
-    for col in range(3):
-        if board[0][col] == board[1][col] == board[2][col] != None:
-            return board[0][col]
+        for col in range(3):
+            if board[0][col] == board[1][col] == board[2][col] != None:
+                return board[0][col]
 
-    if board[0][0] == board[1][1] == board[2][2] != None:
-        return board[0][0]
-    if board[0][2] == board[1][1] == board[2][0] != None:
-        return board[0][2]
+        if board[0][0] == board[1][1] == board[2][2] != None:
+            return board[0][0]
+        if board[0][2] == board[1][1] == board[2][0] != None:
+            return board[0][2]
 
-    return None
+        return None
 
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
     if winner(board) == None:
+        return False
+
+    elif winner(board) == "X" or winner(board)=="O":
         return True
 
-    if winner(board) == "X" or winner(board)=="O":
+    elif winner(board) == False:
         return True
     
     else:
@@ -99,7 +103,7 @@ def utility(board):
     elif winner(board) == "O":
         return -1
 
-    elif winner(board) == None:
+    elif winner(board) == None or winner(board) == False:
         return 0
 
 def minimax(board):
@@ -107,7 +111,15 @@ def minimax(board):
     Returns the optimal action for the current player on the board.
     """
 
-    raise NotImplementedError("minimax method is not implemented yet")
+    if player(board) == "X":
+        value, action = max_value(board)
+        # print only the chosen action to avoid confusion
+        print("max action:", action, "value:", value)
+        return action
+    else:
+        value, action = min_value(board)
+        print("min action:", action, "value:", value)
+        return action
 
 
 def min_value(board):
@@ -122,6 +134,7 @@ def min_value(board):
     
     for action in actions(board):
         value, _ = max_value(result(board, action))
+        # print(value)
         if value < v:
             v = value
             best_action = action
@@ -146,9 +159,9 @@ def max_value(board):
     
     return v, best_action
 
-board = initial_state()
-print(actions(board))
-print(winner(board))
-print(terminal(board))
-print(utility(board))
-
+# board = initial_state()
+# print("Actions: ",actions(board))
+# print("Winner: ",winner(board))
+# print("Terminal: ",terminal(board))
+# print("Utility:",utility(board))
+# minimax(board)

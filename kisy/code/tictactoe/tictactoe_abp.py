@@ -58,6 +58,8 @@ def winner(board):
     Returns the winner of the game, if there is one.
     """
     full = sum(row.count(EMPTY) for row in board)
+     
+
 
     for row in board:
         if row[0] == row[1] == row[2] != None:
@@ -72,11 +74,11 @@ def winner(board):
     if board[0][2] == board[1][1] == board[2][0] != None:
         return board[0][2]
 
-    if full == 0:
-        return False 
+
+    if full ==0:
+        return False
     else:
         return None
-
 
 def terminal(board):
     """
@@ -123,7 +125,7 @@ def minimax(board):
         return action
 
 
-def min_value(board):
+def min_value(board, alpha=-math.inf, beta=math.inf):
     """
     Returns the minimum utility value and the corresponding action for the MIN player.
     """
@@ -134,15 +136,19 @@ def min_value(board):
     best_action = None
     
     for action in actions(board):
-        value, _ = max_value(result(board, action))
+        value, _ = max_value(result(board, action), alpha, beta)
         # print(value)
         if value < v:
             v = value
             best_action = action
+
+        beta = max(beta, v)
+        if beta <= alpha:
+            break
     
     return v, best_action
 
-def max_value(board):
+def max_value(board, alpha=-math.inf, beta=math.inf):
     """
     Returns the maximum utility value and the corresponding action for the MAX player.
     """
@@ -153,10 +159,14 @@ def max_value(board):
     best_action = None
     
     for action in actions(board):
-        value, _ = min_value(result(board, action))
+        value, _ = min_value(result(board, action), alpha, beta)
         if value > v:
             v = value
             best_action = action
+
+        alpha = max(alpha, v)
+        if beta <= alpha:
+            break
     
     return v, best_action
 

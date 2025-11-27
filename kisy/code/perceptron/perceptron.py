@@ -2,10 +2,10 @@
 
 def perceptron():
     features=[(0,0), (0,1), (1,0), (1,1)]
-    labels= [0, 0, 0, 1]
+    labels= [1, 1, 1, 0]
 
     #Gewichte (Bias, w1, w2)
-    w=[0,0,0]
+    w=[0.5,0.5,0.5]
 
     for epoch in range(10):
         for x,label in zip(features,labels):
@@ -20,7 +20,7 @@ def perceptron():
             error= label - prediction
             if error!=0:
                 for i in range(len(w)):
-                    w[i]+= error*x[i] #alpha = 1
+                    w[i]+= error*x[i]*0.5 #alpha = 1
 
         print(f"new weights in epoch {epoch}: {w}")
     return w

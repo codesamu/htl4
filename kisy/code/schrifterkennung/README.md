@@ -329,18 +329,6 @@ The model outputs a probability distribution over 26 classes:
 
 ---
 
-## 📝 License
-
-This project is open source and available under the MIT License.
-
----
-
-## 👨‍💻 Author
-
-Developed for handwritten letter recognition using deep learning techniques.
-
----
-
 ## 🙏 Acknowledgments
 
 - TensorFlow/Keras for deep learning framework
@@ -350,4 +338,3 @@ Developed for handwritten letter recognition using deep learning techniques.
 
 ---
 
-**Made with ❤️ and 🤖 Deep Learning**

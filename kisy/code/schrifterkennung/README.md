@@ -70,14 +70,15 @@ tkinter (usually included with Python)
 ```
 .
 ├── model.py              # Model training script
-├── big-set-draw.py       # Interactive drawing application
+├── draw.py       # Interactive drawing application
 ├── handschrift_A_Z_model.h5  # Trained model (generated)
 ├── BigDataSet_32x32/     # Training dataset folder
 │   ├── A/                # Letter A samples
 │   ├── B/                # Letter B samples
 │   └── ...               # Letters C-Z
-└── README.md             # This file
+├── README.md             # This file
 ```
+├── better-draw.py        # Interactive drawing GUI with centering
 
 ---
 

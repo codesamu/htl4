@@ -77,9 +77,10 @@ tkinter (usually included with Python)
 │   ├── B/                # Letter B samples
 │   └── ...               # Letters C-Z
 ├── README.md             # This file
-```
+
 ├── better-draw.py        # Interactive drawing GUI with centering
 
+```
 ---
 
 ## 🔧 How It Works

@@ -17,11 +17,11 @@ while running:
     human_action = 2
 
     # AI action
-    state, reward, rewardleft, done = env.one_step(2, human=False)
+    state, reward, rewardleft, done = env.one_step(2, human=True)
     ai_action = agent.get_action(state)
 
     # step again with AI controlling right paddle
-    next_state, reward, rewardleft, done = env.one_step(ai_action, human=False)
+    next_state, reward, rewardleft, done = env.one_step(ai_action, human=True)
 
     # store experience
     agent.memory.append((state, ai_action, reward, next_state, done))

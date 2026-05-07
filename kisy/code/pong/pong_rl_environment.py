@@ -107,7 +107,7 @@ def handle_collision(ball, left_paddle, right_paddle):
                 reduction_factor = (left_paddle.height / 2) / ball.MAX_VEL
                 y_vel = difference_in_y / reduction_factor
                 ball.y_vel = -1 * y_vel
-                rewardleft=0.2
+                rewardleft=2.2
 
     else:
         if ball.y >= right_paddle.y and ball.y <= right_paddle.y + right_paddle.height:
@@ -119,7 +119,7 @@ def handle_collision(ball, left_paddle, right_paddle):
                 reduction_factor = (right_paddle.height / 2) / ball.MAX_VEL
                 y_vel = difference_in_y / reduction_factor
                 ball.y_vel = -1 * y_vel
-                reward=0.2
+                reward=2.2
     return reward,rewardleft
 
 
@@ -189,12 +189,12 @@ class pong_environment:
         rewardleft=rewardleft+rewleft
         if self.ball.x < 0:
             self.right_score += 1
-            reward=+1
+            reward+=1
             rewardleft-=1
             self.ball.reset()
         elif self.ball.x > WIDTH:
             self.left_score += 1
-            reward=-1
+            reward-=1
             rewardleft+=1
             self.ball.reset()
 

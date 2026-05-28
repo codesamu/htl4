@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "agent": "HeuristicAgent",
+  "params": {
+    "danger_weight": 0.7200518164911828,
+    "loot_weight": 0.12130288697184582,
+    "center_weight": 0.36820318002197383
+  },
+  "metadata": {
+    "generation": 3060,
+    "fitness": 77957.66666666685,
+    "reward": 4844.333333333511,
+    "score": 17143.333333333332,
+    "kills": 1714.3333333333333,
+    "time_seconds": 180.0,
+    "level": 415.6666666666667,
+    "epsilon": 0.25,
+    "alpha": 0.18
+  }
+}

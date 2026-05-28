@@ -1,0 +1,9 @@
+[project]
+name = "vampire-survivors-ai"
+version = "0.1.0"
+description = "A simple Vampire Survivors-like game with an AI agent"
+requires-python = ">=3.12"
+dependencies = [
+    "pygame>=2.6",
+    "numpy>=1.26",
+]

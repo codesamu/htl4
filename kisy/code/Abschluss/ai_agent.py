@@ -71,6 +71,16 @@ class HeuristicAgent:
         """Given an observation dict, return (dx, dy) in [-1, 1]."""
         px, py = obs["player_x"], obs["player_y"]
         hp_frac = obs["player_hp"]
+        nearest_enemy_dist_norm = float(obs.get("nearest_enemy_dist_norm", 1.0))
+        nearest_gem_dist_norm = float(obs.get("nearest_gem_dist_norm", 1.0))
+        enemy_pressure = float(obs.get("enemy_pressure", 0.0))
+        close_enemy_count = float(obs.get("close_enemy_count", 0.0))
+        attack_ready = float(obs.get("attack_ready", 0.0))
+        attack_radius_norm = float(obs.get("attack_radius_norm", 0.0))
+        wall_left, wall_right, wall_top, wall_bottom = obs.get(
+            "wall_distances",
+            (0.5, 0.5, 0.5, 0.5),
+        )
 
         # --- Danger vector: flee from enemies ---
         flee_x, flee_y = 0.0, 0.0
@@ -88,6 +98,12 @@ class HeuristicAgent:
             flee_x /= flee_len
             flee_y /= flee_len
 
+        if nearest_enemy_dist_norm < 1.0:
+            # Make nearby threats count more strongly than distant ones.
+            flee_boost = max(0.0, 1.0 - nearest_enemy_dist_norm)
+            flee_x *= 1.0 + flee_boost * 0.8 + enemy_pressure * 25.0
+            flee_y *= 1.0 + flee_boost * 0.8 + enemy_pressure * 25.0
+
         # --- Loot vector: move toward nearest gem ---
         loot_x, loot_y = 0.0, 0.0
         for (gdx, gdy, dist_norm) in obs["gems"]:
@@ -101,6 +117,10 @@ class HeuristicAgent:
                     loot_y /= loot_len
                 break
 
+        if nearest_gem_dist_norm < 1.0:
+            loot_x *= 1.0 + max(0.0, 1.0 - nearest_gem_dist_norm)
+            loot_y *= 1.0 + max(0.0, 1.0 - nearest_gem_dist_norm)
+
         # --- Center pull: stay near center of screen ---
         center_x = 0.5 - px
         center_y = 0.5 - py
@@ -109,15 +129,30 @@ class HeuristicAgent:
             center_x /= center_len
             center_y /= center_len
 
+        # --- Wall avoidance: explicitly move away from the closest edge ---
+        wall_x = wall_right - wall_left
+        wall_y = wall_bottom - wall_top
+        wall_len = math.hypot(wall_x, wall_y)
+        if wall_len > 0:
+            wall_x /= wall_len
+            wall_y /= wall_len
+
         # --- Blend based on HP ---
         # Low HP → prioritize fleeing; High HP → prioritize looting
         urgency = 1.0 - hp_frac  # 0 = full HP, 1 = nearly dead
-        dw = self.danger_weight * (0.5 + urgency)
-        lw = self.loot_weight * (1.0 - urgency * 0.7)
+        threat = min(1.0, nearest_enemy_dist_norm * 0.5 + enemy_pressure * 15.0 + close_enemy_count * 0.1)
+        dw = self.danger_weight * (0.45 + urgency * 0.9 + threat)
+        lw = self.loot_weight * max(0.15, 1.0 - urgency * 0.8) * (1.15 - min(nearest_gem_dist_norm, 1.0) * 0.5)
         cw = self.center_weight
+        ww = 0.35 + (1.0 - min(wall_left, wall_right, wall_top, wall_bottom))
 
-        dx = flee_x * dw + loot_x * lw + center_x * cw
-        dy = flee_y * dw + loot_y * lw + center_y * cw
+        if attack_ready > 0.5 and nearest_enemy_dist_norm < attack_radius_norm * 1.2:
+            # If the attack is about to trigger and an enemy is in range, become less timid.
+            dw *= 0.8
+            lw *= 1.05
+
+        dx = flee_x * dw + loot_x * lw + center_x * cw + wall_x * ww
+        dy = flee_y * dw + loot_y * lw + center_y * cw + wall_y * ww
 
         # Clamp
         length = math.hypot(dx, dy)

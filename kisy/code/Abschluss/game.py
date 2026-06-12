@@ -130,6 +130,11 @@ class Game:
     def get_observation(self) -> dict:
         """Return a simple dict describing the current game state."""
         p = self.player
+        attack_radius = min(ATTACK_RADIUS_BASE + p.level * 5, ATTACK_RADIUS_MAX)
+        nearest_enemy_dist = math.hypot(WIDTH, HEIGHT)
+        nearest_gem_dist = math.hypot(WIDTH, HEIGHT)
+        enemy_pressure = 0.0
+        close_enemy_count = 0
 
         # Find the closest enemies (up to 8)
         enemies_sorted = sorted(
@@ -142,6 +147,10 @@ class Game:
             dx = e.x - p.x
             dy = e.y - p.y
             dist = math.hypot(dx, dy)
+            nearest_enemy_dist = min(nearest_enemy_dist, dist)
+            enemy_pressure += 1.0 / ((dist + 1.0) ** 2)
+            if dist < attack_radius * 1.5:
+                close_enemy_count += 1
             enemy_data.append((dx / WIDTH, dy / HEIGHT, dist / math.hypot(WIDTH, HEIGHT), e.hp / ENEMY_HP_BASE))
 
         # Pad to 8
@@ -159,10 +168,19 @@ class Game:
             dx = g.x - p.x
             dy = g.y - p.y
             dist = math.hypot(dx, dy)
+            nearest_gem_dist = min(nearest_gem_dist, dist)
             gem_data.append((dx / WIDTH, dy / HEIGHT, dist / math.hypot(WIDTH, HEIGHT)))
 
         while len(gem_data) < 4:
             gem_data.append((0.0, 0.0, 1.0))
+
+        attack_ready = 1.0 if p.attack_timer >= ATTACK_COOLDOWN - 1 else 0.0
+        wall_distances = (
+            p.x / WIDTH,
+            1.0 - (p.x / WIDTH),
+            p.y / HEIGHT,
+            1.0 - (p.y / HEIGHT),
+        )
 
         return {
             "player_x": p.x / WIDTH,
@@ -170,6 +188,16 @@ class Game:
             "player_hp": p.hp / PLAYER_HP,
             "player_level": p.level,
             "xp_progress": p.xp / XP_TO_LEVEL,
+            "nearest_enemy_dist": nearest_enemy_dist,
+            "nearest_enemy_dist_norm": nearest_enemy_dist / math.hypot(WIDTH, HEIGHT),
+            "nearest_gem_dist": nearest_gem_dist,
+            "nearest_gem_dist_norm": nearest_gem_dist / math.hypot(WIDTH, HEIGHT),
+            "enemy_pressure": enemy_pressure,
+            "close_enemy_count": close_enemy_count,
+            "attack_ready": attack_ready,
+            "attack_radius": attack_radius,
+            "attack_radius_norm": attack_radius / math.hypot(WIDTH, HEIGHT),
+            "wall_distances": wall_distances,
             "enemies": enemy_data,
             "gems": gem_data,
             "num_enemies": len(self.enemies),

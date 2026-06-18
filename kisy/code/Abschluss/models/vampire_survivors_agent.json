@@ -2,18 +2,18 @@
   "version": 1,
   "agent": "HeuristicAgent",
   "params": {
-    "danger_weight": 0.8190366567763873,
-    "loot_weight": 0.6101532526308264,
-    "center_weight": 0.18593652423195037
+    "danger_weight": 0.732261562001812,
+    "loot_weight": 0.38438628136745023,
+    "center_weight": 0.2849800458192949
   },
   "metadata": {
-    "generation": 338,
-    "fitness": 79988.33333333419,
-    "reward": 5948.333333334177,
-    "score": 17313.333333333332,
-    "kills": 1731.3333333333333,
+    "generation": 119,
+    "fitness": 79617.83333333397,
+    "reward": 6051.166666667309,
+    "score": 17233.333333333332,
+    "kills": 1723.3333333333333,
     "time_seconds": 180.0,
-    "level": 424.0,
+    "level": 419.3333333333333,
     "epsilon": 0.25,
     "alpha": 0.18
   }
